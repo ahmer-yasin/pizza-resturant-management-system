@@ -1,7 +1,6 @@
 version: "3.8"
 services:
     api:
-        # image: thomas-oliver/nestjs-dockerized 
         build:
             dockerfile: Dockerfile
             context: .
@@ -22,3 +21,10 @@ services:
             POSTGRES_USER: user
             POSTGRES_PASSWORD: password
             POSTGRES_DB: db
+    
+    redis:
+        image: redis:7-alpine
+        ports:
+             - 6379:6379
+        depends_on:
+            - postgres
